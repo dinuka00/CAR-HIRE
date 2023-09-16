@@ -136,8 +136,8 @@
                                   </Group>
                                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="custIdText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                      <Component id="custTitleText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="categoryIdText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <Component id="categoryNameText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -159,12 +159,12 @@
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="categoryIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="custIdText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="categoryIdText" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="categoryNameLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="custTitleText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="categoryNameText" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="83" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -184,9 +184,9 @@
                     <Property name="text" type="java.lang.String" value="Category ID  "/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="custIdText">
+                <Component class="javax.swing.JTextField" name="categoryIdText">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="custIdTextActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="categoryIdTextActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="categoryNameLabel">
@@ -195,7 +195,7 @@
                     <Property name="text" type="java.lang.String" value="Category Name"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="custTitleText">
+                <Component class="javax.swing.JTextField" name="categoryNameText">
                 </Component>
                 <Component class="javax.swing.JButton" name="addButton">
                   <Properties>
@@ -262,7 +262,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="customerTable">
+                    <Component class="javax.swing.JTable" name="categoryTable">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                           <Table columnCount="4" rowCount="4">
@@ -274,7 +274,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="customerTableMouseClicked"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="categoryTableMouseClicked"/>
                       </Events>
                     </Component>
                   </SubComponents>

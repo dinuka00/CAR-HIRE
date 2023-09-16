@@ -4,17 +4,29 @@
  */
 package car.hire.view;
 
+import car.hire.controller.CarCategoryController;
+import car.hire.dto.CarCategoryDto;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DinukaThemiya
  */
 public class CategoryPanel extends javax.swing.JPanel {
 
+    private CarCategoryController carCategoryController;
+
     /**
      * Creates new form CarCategories
      */
     public CategoryPanel() {
+        carCategoryController = new CarCategoryController();
         initComponents();
+        loadAllCarCategories();
     }
 
     /**
@@ -32,15 +44,15 @@ public class CategoryPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         customerPanel = new javax.swing.JPanel();
         categoryIdLabel = new javax.swing.JLabel();
-        custIdText = new javax.swing.JTextField();
+        categoryIdText = new javax.swing.JTextField();
         categoryNameLabel = new javax.swing.JLabel();
-        custTitleText = new javax.swing.JTextField();
+        categoryNameText = new javax.swing.JTextField();
         addButton = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        customerTable = new javax.swing.JTable();
+        categoryTable = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Category Manage");
@@ -65,9 +77,9 @@ public class CategoryPanel extends javax.swing.JPanel {
         categoryIdLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         categoryIdLabel.setText("Category ID  ");
 
-        custIdText.addActionListener(new java.awt.event.ActionListener() {
+        categoryIdText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custIdTextActionPerformed(evt);
+                categoryIdTextActionPerformed(evt);
             }
         });
 
@@ -111,8 +123,8 @@ public class CategoryPanel extends javax.swing.JPanel {
                             .addComponent(categoryIdLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(6, 6, 6)
                         .addGroup(customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(custTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(categoryIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(categoryNameText, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(customerPanelLayout.createSequentialGroup()
                         .addGap(81, 81, 81)
                         .addComponent(deleteButton)
@@ -128,11 +140,11 @@ public class CategoryPanel extends javax.swing.JPanel {
                 .addGap(26, 26, 26)
                 .addGroup(customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(categoryIdLabel)
-                    .addComponent(custIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(categoryIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(categoryNameLabel)
-                    .addComponent(custTitleText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(categoryNameText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(83, 83, 83)
                 .addGroup(customerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateButton)
@@ -141,7 +153,7 @@ public class CategoryPanel extends javax.swing.JPanel {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        customerTable.setModel(new javax.swing.table.DefaultTableModel(
+        categoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -152,12 +164,12 @@ public class CategoryPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        customerTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        categoryTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                customerTableMouseClicked(evt);
+                categoryTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(customerTable);
+        jScrollPane1.setViewportView(categoryTable);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
@@ -234,36 +246,36 @@ public class CategoryPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void custIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custIdTextActionPerformed
+    private void categoryIdTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryIdTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_custIdTextActionPerformed
+    }//GEN-LAST:event_categoryIdTextActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        addCustomer();
+        addCategory();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        updateCustomer();
+        updateCategory();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        deleteCustomer();
+        deleteCategory();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
-    private void customerTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_customerTableMouseClicked
-        searchCustomer();
-    }//GEN-LAST:event_customerTableMouseClicked
+    private void categoryTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoryTableMouseClicked
+        searchCategory();
+    }//GEN-LAST:event_categoryTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JPanel basePanel;
     private javax.swing.JLabel categoryIdLabel;
+    private javax.swing.JTextField categoryIdText;
     private javax.swing.JLabel categoryNameLabel;
-    private javax.swing.JTextField custIdText;
-    private javax.swing.JTextField custTitleText;
+    private javax.swing.JTextField categoryNameText;
+    private javax.swing.JTable categoryTable;
     private javax.swing.JPanel customerPanel;
-    private javax.swing.JTable customerTable;
     private javax.swing.JButton deleteButton;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
@@ -272,4 +284,99 @@ public class CategoryPanel extends javax.swing.JPanel {
     private javax.swing.JPanel tablePanel;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
+
+    private void addCategory() {
+
+        try {
+            CarCategoryDto carCategoryDto = new CarCategoryDto(categoryIdText.getText(), categoryNameText.getText());
+
+            String result = carCategoryController.addCategory(carCategoryDto);
+            JOptionPane.showMessageDialog(this, result);
+            clear();
+            loadAllCarCategories();
+        } catch (Exception ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+    }
+
+    private void clear() {
+
+        categoryIdText.setText("");
+        categoryNameText.setText("");
+    }
+
+    private void loadAllCarCategories() {
+        try {
+            String[] columns = {"Category ID", "Category Name"};
+
+            DefaultTableModel dtm = new DefaultTableModel(columns, 0) {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+
+            };
+            categoryTable.setModel(dtm);
+
+            ArrayList<CarCategoryDto> carCategoryDtos = carCategoryController.getAllCarCategories();
+
+            for (CarCategoryDto category : carCategoryDtos) {
+                Object[] rowData = {category.getId(), category.getName()};
+                dtm.addRow(rowData);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void updateCategory() {
+        try {
+            CarCategoryDto carCategoryDto = new CarCategoryDto(categoryIdText.getText(), categoryNameText.getText());
+
+            String result = carCategoryController.updateCategory(carCategoryDto);
+            JOptionPane.showMessageDialog(this, result);
+            clear();
+            loadAllCarCategories();
+        } catch (Exception ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+    }
+
+    private void searchCategory() {
+        try {
+            String categoryId = categoryTable.getValueAt(categoryTable.getSelectedRow(), 0).toString();
+
+            CarCategoryDto carCategoryDto = carCategoryController.getCategory(categoryId);
+
+            if (carCategoryDto != null) {
+                categoryIdText.setText(carCategoryDto.getId());
+                categoryNameText.setText(carCategoryDto.getName());
+            } else {
+                JOptionPane.showMessageDialog(this, "Customer Not Found");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void deleteCategory() {
+
+        try {
+            String result = carCategoryController.deleteCategory(categoryIdText.getText());
+            JOptionPane.showMessageDialog(this, result);
+            clear();
+            loadAllCarCategories();
+        } catch (Exception ex) {
+            Logger.getLogger(CategoryPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+    }
+
 }

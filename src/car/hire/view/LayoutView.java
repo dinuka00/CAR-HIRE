@@ -132,7 +132,7 @@ public class LayoutView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomerButtonActionPerformed
-        loadAllCategories();
+        loadCategoryPanel();
     }//GEN-LAST:event_manageCustomerButtonActionPerformed
 
     
@@ -146,7 +146,7 @@ public class LayoutView extends javax.swing.JFrame {
     private javax.swing.JPanel sideNavPanel;
     // End of variables declaration//GEN-END:variables
 
-    private void loadAllCategories() {
+    private void loadCategoryPanel() {
         bodyPanel.removeAll();
         CategoryPanel categoryPanel = new CategoryPanel();
 
