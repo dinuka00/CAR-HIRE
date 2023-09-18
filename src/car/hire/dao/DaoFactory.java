@@ -6,43 +6,42 @@ package car.hire.dao;
 
 import car.hire.dao.custom.CarCategoryDao;
 import car.hire.dao.custom.impl.CarCategoryDaoImpl;
+import car.hire.dao.custom.impl.CarDaoImpl;
 
 /**
  *
  * @author DinukaThemiya
  */
 public class DaoFactory {
-    
+
     private static DaoFactory daoFactory;
 
     private DaoFactory() {
     }
-    
-    public static DaoFactory getInstance(){
-        if(daoFactory == null){
+
+    public static DaoFactory getInstance() {
+        if (daoFactory == null) {
             daoFactory = new DaoFactory();
         }
-            return  daoFactory;
-        
+        return daoFactory;
+
     }
-    
-    public SuperDao getDao(DaoTypes type){
+
+    public SuperDao getDao(DaoTypes type) {
         switch (type) {
             case CAR_CATEGORY:
                 return new CarCategoryDaoImpl();
-                
-               
+            case CAR:
+                return new CarDaoImpl();
+
             default:
-                return  null;
+                return null;
         }
 
-}
-    
-    public enum DaoTypes{
-        CAR_CATEGORY
     }
-    
-    
-   
-    
+
+    public enum DaoTypes {
+        CAR_CATEGORY, CAR
+    }
+
 }
