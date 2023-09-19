@@ -7,6 +7,7 @@ package car.hire.dao.custom.impl;
 import car.hire.dao.CrudUtil;
 import car.hire.dao.custom.CarDao;
 import car.hire.entity.CarEntity;
+import car.hire.entity.CustomerEntity;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -80,4 +81,6 @@ public class CarDaoImpl implements CarDao {
         }
         return carEntitys;
     }
+
+    
 }

@@ -5,15 +5,12 @@
 package car.hire.dao.custom;
 
 import car.hire.dao.CrudDao;
-import car.hire.entity.CarEntity;
-
+import car.hire.entity.CustomerEntity;
 
 /**
  *
  * @author DinukaThemiya
  */
-public interface CarDao extends CrudDao<CarEntity, String> {
-
-    
+public interface CustomerDao extends CrudDao<CustomerEntity, String> {
 
 }

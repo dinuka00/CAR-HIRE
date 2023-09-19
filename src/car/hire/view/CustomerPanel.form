@@ -109,7 +109,7 @@
                                   <Component id="custAddressLabel" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="custDobText" min="-2" pref="117" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
@@ -125,49 +125,41 @@
                                               <Component id="custProvinceText" min="-2" pref="117" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="custAddressText" min="-2" pref="480" max="-2" attributes="0"/>
-                                      <EmptySpace pref="101" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="custAddressText" min="-2" pref="480" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="custTitleLabel" alignment="1" pref="132" max="32767" attributes="0"/>
+                                  <Component id="custIdLabel" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="custZipLabel" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="custCityLabel" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="custTitleLabel" alignment="1" pref="132" max="32767" attributes="0"/>
-                                          <Component id="custIdLabel" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="custZipLabel" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                          <Component id="custCityLabel" alignment="0" min="-2" pref="102" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="custTitleText" min="-2" pref="117" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                                              <Component id="custNameLabel" min="-2" pref="106" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="custNameText" min="-2" pref="215" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="custIdText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                          <Component id="custCityText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                          <Component id="custZipText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="custTitleText" min="-2" pref="117" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                      <Component id="custNameLabel" min="-2" pref="106" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="custNameText" min="-2" pref="215" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="updateButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="addButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="custIdText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                  <Component id="custCityText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
+                                  <Component id="custZipText" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="deleteButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="updateButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="addButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -293,7 +285,7 @@
             <Component class="javax.swing.JLabel" name="phoneLabel">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="2"/>
-                <Property name="text" type="java.lang.String" value="Salary"/>
+                <Property name="text" type="java.lang.String" value="Phone"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="custProvincLabel">
