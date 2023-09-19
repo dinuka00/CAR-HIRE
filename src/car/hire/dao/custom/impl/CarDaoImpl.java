@@ -54,7 +54,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public boolean delete(String id) throws Exception {
-        return CrudUtil.executeUpdate("SELECT * FROM car WHERE CarID = ? ",
+        return CrudUtil.executeUpdate("DELETE  FROM car WHERE CarID = ? ",
                 id);
     }
 

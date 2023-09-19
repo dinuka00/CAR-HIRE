@@ -329,15 +329,15 @@ public class CarPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-
+        updateCar();
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-
+        deleteCar();
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void carTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carTableMouseClicked
-
+        searchCar();
     }//GEN-LAST:event_carTableMouseClicked
 
     private void availableTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_availableTextActionPerformed
@@ -411,27 +411,88 @@ public class CarPanel extends javax.swing.JPanel {
 
         try {
             String[] collumns = {"Car ID", "Make", "Model", "Daily Rental", "Availability"};
-            
+
             DefaultTableModel dtm = new DefaultTableModel(collumns, 0) {
                 @Override
                 public boolean isCellEditable(int row, int column) {
                     return false;
                 }
-                
+
             };
-            
+
             carTable.setModel(dtm);
-            
+
             ArrayList<CarDto> carDtos = carController.getAllCars();
-            
-            for(CarDto car : carDtos){
-                Object[] rowData = {car.getCarId(),  car.getMake(), car.getModel(), car.getDailyRentalRate(), car.getAvailable()};
+
+            for (CarDto car : carDtos) {
+                Object[] rowData = {car.getCarId(), car.getMake(), car.getModel(), car.getDailyRentalRate(), car.getAvailable()};
                 dtm.addRow(rowData);
             }
         } catch (Exception ex) {
             Logger.getLogger(CarPanel.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
+    }
+
+    private void searchCar() {
+        try {
+            String carId = carTable.getValueAt(carTable.getSelectedRow(), 0).toString();
+
+            CarDto carDto = carController.getCar(carId);
+
+            if (carDto != null) {
+                carIdText.setText(carDto.getCarId());
+                categoryIdText.setText(carDto.getCategoryId());
+                licensePlateText.setText(carDto.getLicensePlate());
+                makeText.setText(carDto.getMake());
+                modelText.setText(carDto.getModel());
+                yearText.setText(Integer.toString(carDto.getYear()));
+                dailyRentalText.setText(Double.toString(carDto.getDailyRentalRate()));
+                availableText.setText(carDto.getAvailable());
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CarPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+    }
+
+    private void updateCar() {
+
+        try {
+            CarDto carDto = new CarDto(carIdText.getText(),
+                    licensePlateText.getText(),
+                    makeText.getText(),
+                    modelText.getText(),
+                    Integer.parseInt(yearText.getText()),
+                    categoryIdText.getText(),
+                    Double.parseDouble(dailyRentalText.getText()),
+                    availableText.getText());
+
+            String result = carController.updateCar(carDto);
+            JOptionPane.showMessageDialog(this, result);
+            clear();
+            loadAllCars();
+        } catch (Exception ex) {
+            Logger.getLogger(CarPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
+    }
+
+    private void deleteCar() {
+
+        try {
+            String result = carController.deleteCar(carIdText.getText());
+            JOptionPane.showMessageDialog(this, result);
+            clear();
+            loadAllCars();
+        } catch (Exception ex) {
+            Logger.getLogger(CarPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+
     }
 
 }

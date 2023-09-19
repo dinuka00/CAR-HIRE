@@ -30,8 +30,9 @@ public class LayoutView extends javax.swing.JFrame {
         headerPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         sideNavPanel = new javax.swing.JPanel();
+        manageCategoriesButton = new javax.swing.JButton();
+        manageCarButton = new javax.swing.JButton();
         manageCustomerButton = new javax.swing.JButton();
-        manageCustomerButton1 = new javax.swing.JButton();
         bodyPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,19 +62,27 @@ public class LayoutView extends javax.swing.JFrame {
 
         sideNavPanel.setBackground(new java.awt.Color(255, 204, 255));
 
-        manageCustomerButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        manageCustomerButton.setText("Car Categories");
-        manageCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+        manageCategoriesButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        manageCategoriesButton.setText("Car Categories");
+        manageCategoriesButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageCustomerButtonActionPerformed(evt);
+                manageCategoriesButtonActionPerformed(evt);
             }
         });
 
-        manageCustomerButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        manageCustomerButton1.setText("Car Manage");
-        manageCustomerButton1.addActionListener(new java.awt.event.ActionListener() {
+        manageCarButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        manageCarButton.setText("Car Manage");
+        manageCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageCustomerButton1ActionPerformed(evt);
+                manageCarButtonActionPerformed(evt);
+            }
+        });
+
+        manageCustomerButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        manageCustomerButton.setText("Customer Manage");
+        manageCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageCustomerButtonActionPerformed(evt);
             }
         });
 
@@ -84,18 +93,21 @@ public class LayoutView extends javax.swing.JFrame {
             .addGroup(sideNavPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(sideNavPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(manageCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .addComponent(manageCustomerButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                    .addComponent(manageCategoriesButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(manageCarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(manageCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                 .addContainerGap())
         );
         sideNavPanelLayout.setVerticalGroup(
             sideNavPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sideNavPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(manageCustomerButton)
+                .addComponent(manageCategoriesButton)
                 .addGap(18, 18, 18)
-                .addComponent(manageCustomerButton1)
-                .addContainerGap(408, Short.MAX_VALUE))
+                .addComponent(manageCarButton)
+                .addGap(18, 18, 18)
+                .addComponent(manageCustomerButton)
+                .addContainerGap(363, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
@@ -144,13 +156,17 @@ public class LayoutView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void manageCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomerButtonActionPerformed
+    private void manageCategoriesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCategoriesButtonActionPerformed
         loadCategoryPanel();
-    }//GEN-LAST:event_manageCustomerButtonActionPerformed
+    }//GEN-LAST:event_manageCategoriesButtonActionPerformed
 
-    private void manageCustomerButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomerButton1ActionPerformed
+    private void manageCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCarButtonActionPerformed
         loadCarManagePanel();
-    }//GEN-LAST:event_manageCustomerButton1ActionPerformed
+    }//GEN-LAST:event_manageCarButtonActionPerformed
+
+    private void manageCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageCustomerButtonActionPerformed
+        loadCustomerPanel();
+    }//GEN-LAST:event_manageCustomerButtonActionPerformed
 
     
 
@@ -159,8 +175,9 @@ public class LayoutView extends javax.swing.JFrame {
     private javax.swing.JPanel bodyPanel;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton manageCarButton;
+    private javax.swing.JButton manageCategoriesButton;
     private javax.swing.JButton manageCustomerButton;
-    private javax.swing.JButton manageCustomerButton1;
     private javax.swing.JPanel sideNavPanel;
     // End of variables declaration//GEN-END:variables
 
@@ -180,6 +197,17 @@ public class LayoutView extends javax.swing.JFrame {
 
         carPanel.setSize(bodyPanel.getWidth(), bodyPanel.getHeight());
         bodyPanel.add(carPanel);
+        bodyPanel.repaint();
+        bodyPanel.revalidate();
+        
+    }
+
+    private void loadCustomerPanel() {
+        bodyPanel.removeAll();
+        CustomerPanel customerPanel = new CustomerPanel();
+
+        customerPanel.setSize(bodyPanel.getWidth(), bodyPanel.getHeight());
+        bodyPanel.add(customerPanel);
         bodyPanel.repaint();
         bodyPanel.revalidate();
         

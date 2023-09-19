@@ -14,6 +14,8 @@ import java.util.ArrayList;
  * @author DinukaThemiya
  */
 public class CarController {
+
+   
     
     CarService carService = (CarService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.CAR);
 
@@ -25,6 +27,18 @@ public class CarController {
         return carService.getAllCars();
     }
 
+    public CarDto getCar(String carId) throws Exception {
+        return carService.getCar(carId);
+    }
+
+    public String updateCar(CarDto carDto) throws Exception {
+        return carService.updateCar(carDto);
+    }
+
+    public String deleteCar(String text) throws Exception {
+        return carService.deleteCar(text);
+    }
+    
     
     
 }
