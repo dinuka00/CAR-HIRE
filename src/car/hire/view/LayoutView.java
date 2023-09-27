@@ -239,4 +239,8 @@ public class LayoutView extends javax.swing.JFrame {
         bodyPanel.repaint();
         bodyPanel.revalidate();
     }
+    
+    private void searchCombo(){
+    
+    }
 }

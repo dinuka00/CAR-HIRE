@@ -4,11 +4,10 @@
  */
 package car.hire.dao;
 
-import car.hire.dao.custom.CarCategoryDao;
 import car.hire.dao.custom.impl.CarCategoryDaoImpl;
 import car.hire.dao.custom.impl.CarDaoImpl;
 import car.hire.dao.custom.impl.CustomerDaoImpl;
-import car.hire.service.custom.impl.CustomerServiceImpl;
+import car.hire.dao.custom.impl.RentDaoImpl;
 
 /**
  *
@@ -37,6 +36,8 @@ public class DaoFactory {
                 return new CarDaoImpl();
             case CUSTOMER:
                 return new CustomerDaoImpl();
+            case RENT:
+                return new RentDaoImpl();
             default:
                 return null;
         }
@@ -44,7 +45,7 @@ public class DaoFactory {
     }
 
     public enum DaoTypes {
-        CAR_CATEGORY, CAR, CUSTOMER
+        CAR_CATEGORY, CAR, CUSTOMER, RENT
     }
 
 }

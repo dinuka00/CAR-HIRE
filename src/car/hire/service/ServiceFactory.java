@@ -4,9 +4,11 @@
  */
 package car.hire.service;
 
+import car.hire.service.custom.RentService;
 import car.hire.service.custom.impl.CarCategoryServiceImpl;
 import car.hire.service.custom.impl.CarServiceImpl;
 import car.hire.service.custom.impl.CustomerServiceImpl;
+import car.hire.service.custom.impl.RentServiceImpl;
 
 /**
  *
@@ -33,14 +35,16 @@ public class ServiceFactory {
             case CAR:
                 return new CarServiceImpl();
             case CUSTOMER:
-                return new CustomerServiceImpl();    
+                return new CustomerServiceImpl(); 
+            case RENT:
+                return new RentServiceImpl();     
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        CAR_CATEGORY, CAR, CUSTOMER
+        CAR_CATEGORY, CAR, CUSTOMER, RENT
     }
 
 }

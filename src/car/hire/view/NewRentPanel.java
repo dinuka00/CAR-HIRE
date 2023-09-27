@@ -4,16 +4,33 @@
  */
 package car.hire.view;
 
+import car.hire.controller.CarController;
+import car.hire.controller.CustomerController;
+import car.hire.controller.RentController;
+import car.hire.dto.CarDto;
+import car.hire.dto.CustomerDto;
+import car.hire.dto.RentDto;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author DinukaThemiya
  */
 public class NewRentPanel extends javax.swing.JPanel {
 
+    private CustomerController customerController;
+    private CarController carController;
+    private RentController rentController;
+
     /**
      * Creates new form NewRentPanel
      */
     public NewRentPanel() {
+        customerController = new CustomerController();
+        carController = new CarController();
+        rentController = new RentController();
         initComponents();
     }
 
@@ -39,13 +56,15 @@ public class NewRentPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         carIdLabel = new javax.swing.JLabel();
         carIdText = new javax.swing.JTextField();
-        searchItemButton = new javax.swing.JButton();
+        searchCarButton = new javax.swing.JButton();
         carDataLabel = new javax.swing.JLabel();
         pickupDateLabel = new javax.swing.JLabel();
-        qtyText = new javax.swing.JTextField();
-        discountLabel = new javax.swing.JLabel();
-        discountText = new javax.swing.JTextField();
+        pickupDateText = new javax.swing.JTextField();
+        dueDateLabel = new javax.swing.JLabel();
+        dueDateText = new javax.swing.JTextField();
         rentButton = new javax.swing.JButton();
+        feeLabel = new javax.swing.JLabel();
+        feeText = new javax.swing.JTextField();
         tablePanel = new javax.swing.JPanel();
 
         headerlabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -80,19 +99,23 @@ public class NewRentPanel extends javax.swing.JPanel {
             }
         });
 
+        custDataLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
         carIdLabel.setText("Car ID");
 
-        searchItemButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
-        searchItemButton.setText("Search");
-        searchItemButton.addActionListener(new java.awt.event.ActionListener() {
+        searchCarButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
+        searchCarButton.setText("Search");
+        searchCarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchItemButtonActionPerformed(evt);
+                searchCarButtonActionPerformed(evt);
             }
         });
 
+        carDataLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
         pickupDateLabel.setText("Pickup Date");
 
-        discountLabel.setText("Return Date");
+        dueDateLabel.setText("Return Date");
 
         rentButton.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         rentButton.setText("Rent");
@@ -101,6 +124,8 @@ public class NewRentPanel extends javax.swing.JPanel {
                 rentButtonActionPerformed(evt);
             }
         });
+
+        feeLabel.setText("Fee");
 
         javax.swing.GroupLayout fromPanelLayout = new javax.swing.GroupLayout(fromPanel);
         fromPanel.setLayout(fromPanelLayout);
@@ -123,10 +148,10 @@ public class NewRentPanel extends javax.swing.JPanel {
                                     .addGroup(fromPanelLayout.createSequentialGroup()
                                         .addComponent(carIdText, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(29, 29, 29)
-                                        .addComponent(searchItemButton)
+                                        .addComponent(searchCarButton)
                                         .addGap(35, 35, 35)
                                         .addComponent(carDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 322, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(qtyText, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(pickupDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(11, 11, 11))
                             .addGroup(fromPanelLayout.createSequentialGroup()
                                 .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -142,10 +167,12 @@ public class NewRentPanel extends javax.swing.JPanel {
                                         .addComponent(searchCustomerButton)
                                         .addGap(39, 39, 39)
                                         .addComponent(custDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(fromPanelLayout.createSequentialGroup()
-                                        .addComponent(discountLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fromPanelLayout.createSequentialGroup()
+                                        .addComponent(dueDateLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                        .addComponent(discountText, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(feeText, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(dueDateText, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(356, 356, 356)))
                                 .addGap(0, 20, Short.MAX_VALUE)))
                         .addContainerGap())
@@ -154,7 +181,11 @@ public class NewRentPanel extends javax.swing.JPanel {
                         .addComponent(rentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(108, 108, 108))))
             .addGroup(fromPanelLayout.createSequentialGroup()
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(fromPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(feeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         fromPanelLayout.setVerticalGroup(
@@ -177,19 +208,24 @@ public class NewRentPanel extends javax.swing.JPanel {
                 .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(carDataLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(fromPanelLayout.createSequentialGroup()
-                        .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(carIdLabel)
-                            .addComponent(searchItemButton)
-                            .addComponent(carIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(searchCarButton)
+                            .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(carIdLabel)
+                                .addComponent(carIdText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(29, 29, 29)
                         .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(qtyText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pickupDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pickupDateLabel))))
                 .addGap(18, 18, 18)
                 .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(discountLabel)
-                    .addComponent(discountText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                    .addComponent(dueDateLabel)
+                    .addComponent(dueDateText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(fromPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(feeLabel)
+                    .addComponent(feeText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(rentButton)
                 .addGap(19, 19, 19))
         );
@@ -243,15 +279,15 @@ public class NewRentPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerButtonActionPerformed
-        
+        searchCustomer();
     }//GEN-LAST:event_searchCustomerButtonActionPerformed
 
-    private void searchItemButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchItemButtonActionPerformed
-        
-    }//GEN-LAST:event_searchItemButtonActionPerformed
+    private void searchCarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCarButtonActionPerformed
+        searchCar();
+    }//GEN-LAST:event_searchCarButtonActionPerformed
 
     private void rentButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rentButtonActionPerformed
-       
+        rent();
     }//GEN-LAST:event_rentButtonActionPerformed
 
 
@@ -263,19 +299,81 @@ public class NewRentPanel extends javax.swing.JPanel {
     private javax.swing.JLabel custDataLabel;
     private javax.swing.JTextField customerIdText;
     private javax.swing.JLabel customerLabel;
-    private javax.swing.JLabel discountLabel;
-    private javax.swing.JTextField discountText;
+    private javax.swing.JLabel dueDateLabel;
+    private javax.swing.JTextField dueDateText;
+    private javax.swing.JLabel feeLabel;
+    private javax.swing.JTextField feeText;
     private javax.swing.JPanel fromPanel;
     private javax.swing.JPanel headerPanel2;
     private javax.swing.JLabel headerlabel2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel pickupDateLabel;
-    private javax.swing.JTextField qtyText;
+    private javax.swing.JTextField pickupDateText;
     private javax.swing.JButton rentButton;
     private javax.swing.JLabel rentIdLabel;
     private javax.swing.JTextField rentIdText;
+    private javax.swing.JButton searchCarButton;
     private javax.swing.JButton searchCustomerButton;
-    private javax.swing.JButton searchItemButton;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
+
+    private void searchCustomer() {
+        try {
+            String custId = customerIdText.getText();
+            CustomerDto cust = customerController.getCustomer(custId);
+            if (cust != null) {
+                custDataLabel.setText(cust.getName());
+            } else {
+                JOptionPane.showMessageDialog(this, "Customer Not Found");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(NewRentPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+        }
+    }
+
+    private void searchCar() {
+        try {
+            String carId = carIdText.getText();
+            CarDto car = carController.getCar(carId);
+            
+            
+            if (car != null) {
+                carDataLabel.setText("Available : "+car.getAvailable());
+            } else {
+                JOptionPane.showMessageDialog(this, "Item Not Found");
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(NewRentPanel.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+
+    }
+    
+    private void clear(){
+        carIdText.setText("");
+        rentIdText.setText("");
+        customerIdText.setText("");
+        pickupDateText.setText("");
+        dueDateText.setText("");
+        
+    }
+
+    private void rent() {
+        
+        try {
+            RentDto rentDto = new RentDto(rentIdText.getText(),
+                    customerIdText.getText(),
+                    carIdText.getText(),
+                    pickupDateText.getText(),
+                    dueDateText.getText());
+            
+            String result = rentController.rent(rentDto);
+            JOptionPane.showMessageDialog(this, result);
+        } catch (Exception ex) {
+            Logger.getLogger(NewRentPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    
 }

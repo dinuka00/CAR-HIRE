@@ -5,6 +5,7 @@
 package car.hire.controller;
 
 import car.hire.dto.CarDto;
+import car.hire.dto.RentDto;
 import car.hire.service.ServiceFactory;
 import car.hire.service.custom.CarService;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class CarController {
     public String deleteCar(String text) throws Exception {
         return carService.deleteCar(text);
     }
+
+    
     
     
     

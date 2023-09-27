@@ -118,11 +118,11 @@
                                           <Group type="102" attributes="0">
                                               <Component id="carIdText" min="-2" pref="102" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                              <Component id="searchItemButton" min="-2" max="-2" attributes="0"/>
+                                              <Component id="searchCarButton" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                                               <Component id="carDataLabel" min="-2" pref="322" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="qtyText" min="-2" pref="202" max="-2" attributes="0"/>
+                                          <Component id="pickupDateText" min="-2" pref="202" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   </Group>
@@ -143,10 +143,13 @@
                                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                               <Component id="custDataLabel" min="-2" pref="310" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" attributes="0">
-                                              <Component id="discountLabel" min="-2" pref="112" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="dueDateLabel" min="-2" pref="112" max="-2" attributes="0"/>
                                               <EmptySpace pref="27" max="32767" attributes="0"/>
-                                              <Component id="discountText" min="-2" pref="202" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="feeText" min="-2" pref="202" max="-2" attributes="0"/>
+                                                  <Component id="dueDateText" min="-2" pref="202" max="-2" attributes="0"/>
+                                              </Group>
                                               <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -162,8 +165,14 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jSeparator1" min="-2" pref="657" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jSeparator1" alignment="0" min="-2" pref="657" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="feeLabel" min="-2" pref="112" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -191,24 +200,31 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="carDataLabel" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="carIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="searchItemButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="carIdText" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="searchCarButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="carIdLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="carIdText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="qtyText" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pickupDateText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="pickupDateLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="discountLabel" min="-2" max="-2" attributes="0"/>
-                          <Component id="discountText" min="-2" max="-2" attributes="0"/>
+                          <Component id="dueDateLabel" min="-2" max="-2" attributes="0"/>
+                          <Component id="dueDateText" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="60" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="feeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="feeText" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="35" max="32767" attributes="0"/>
                       <Component id="rentButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
@@ -242,6 +258,11 @@
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="custDataLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
             </Component>
@@ -252,7 +273,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="carIdText">
             </Component>
-            <Component class="javax.swing.JButton" name="searchItemButton">
+            <Component class="javax.swing.JButton" name="searchCarButton">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Helvetica Neue" size="14" style="1"/>
@@ -260,24 +281,29 @@
                 <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchItemButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchCarButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="carDataLabel">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="pickupDateLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pickup Date"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="qtyText">
+            <Component class="javax.swing.JTextField" name="pickupDateText">
             </Component>
-            <Component class="javax.swing.JLabel" name="discountLabel">
+            <Component class="javax.swing.JLabel" name="dueDateLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Return Date"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="discountText">
+            <Component class="javax.swing.JTextField" name="dueDateText">
             </Component>
             <Component class="javax.swing.JButton" name="rentButton">
               <Properties>
@@ -289,6 +315,13 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rentButtonActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="feeLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Fee"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="feeText">
             </Component>
           </SubComponents>
         </Container>
