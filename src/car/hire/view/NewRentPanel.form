@@ -146,10 +146,7 @@
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="dueDateLabel" min="-2" pref="112" max="-2" attributes="0"/>
                                               <EmptySpace pref="27" max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="feeText" min="-2" pref="202" max="-2" attributes="0"/>
-                                                  <Component id="dueDateText" min="-2" pref="202" max="-2" attributes="0"/>
-                                              </Group>
+                                              <Component id="dueDateText" min="-2" pref="202" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
@@ -166,13 +163,7 @@
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSeparator1" alignment="0" min="-2" pref="657" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="feeLabel" min="-2" pref="112" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jSeparator1" min="-2" pref="657" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -219,12 +210,7 @@
                           <Component id="dueDateLabel" min="-2" max="-2" attributes="0"/>
                           <Component id="dueDateText" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="feeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="feeText" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
+                      <EmptySpace pref="78" max="32767" attributes="0"/>
                       <Component id="rentButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
@@ -234,6 +220,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="rentIdLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Rent ID"/>
               </Properties>
             </Component>
@@ -241,6 +230,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="customerLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Customer"/>
               </Properties>
             </Component>
@@ -268,6 +260,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="carIdLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Car ID"/>
               </Properties>
             </Component>
@@ -293,6 +288,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="pickupDateLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pickup Date"/>
               </Properties>
             </Component>
@@ -300,6 +298,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="dueDateLabel">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="12" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Return Date"/>
               </Properties>
             </Component>
@@ -315,13 +316,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rentButtonActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="feeLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Fee"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="feeText">
             </Component>
           </SubComponents>
         </Container>
