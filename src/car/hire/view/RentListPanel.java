@@ -4,17 +4,28 @@
  */
 package car.hire.view;
 
+import car.hire.controller.RentController;
+import car.hire.dto.RentDto;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DinukaThemiya
  */
 public class RentListPanel extends javax.swing.JPanel {
+    
+    private RentController rentController;
 
     /**
      * Creates new form RentListPanel
      */
     public RentListPanel() {
+        rentController = new RentController();
         initComponents();
+        loadAllRentals();
     }
 
     /**
@@ -30,12 +41,12 @@ public class RentListPanel extends javax.swing.JPanel {
         headerlabel = new javax.swing.JLabel();
         tablePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        carTable = new javax.swing.JTable();
+        rentTable = new javax.swing.JTable();
 
         headerlabel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         headerlabel.setText("Rent List");
 
-        carTable.setModel(new javax.swing.table.DefaultTableModel(
+        rentTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -46,12 +57,12 @@ public class RentListPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        carTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        rentTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                carTableMouseClicked(evt);
+                rentTableMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(carTable);
+        jScrollPane1.setViewportView(rentTable);
 
         javax.swing.GroupLayout tablePanelLayout = new javax.swing.GroupLayout(tablePanel);
         tablePanel.setLayout(tablePanelLayout);
@@ -59,15 +70,15 @@ public class RentListPanel extends javax.swing.JPanel {
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         tablePanelLayout.setVerticalGroup(
             tablePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tablePanelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout headerPanel2Layout = new javax.swing.GroupLayout(headerPanel2);
@@ -110,16 +121,45 @@ public class RentListPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void carTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_carTableMouseClicked
-        searchCar();
-    }//GEN-LAST:event_carTableMouseClicked
+    private void rentTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rentTableMouseClicked
+        
+    }//GEN-LAST:event_rentTableMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable carTable;
     private javax.swing.JPanel headerPanel2;
     private javax.swing.JLabel headerlabel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable rentTable;
     private javax.swing.JPanel tablePanel;
     // End of variables declaration//GEN-END:variables
+
+    
+    private void loadAllRentals(){
+        
+        try {
+            String[] columns = {"RentalID", "CustID", "CarID", "StartDate", "EndDate" };
+            
+            DefaultTableModel dtm = new DefaultTableModel(columns,0){
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+                
+            };
+            
+            rentTable.setModel(dtm);
+            
+            ArrayList<RentDto> rents = rentController.getAllRents();
+            
+            for(RentDto rent : rents){
+                Object[] rowData = {rent.getRentalId(), rent.getCustId(),
+                    rent.getCarId(), rent.getStartDate(), rent.getEndDate()};
+                dtm.addRow(rowData);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(RentListPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

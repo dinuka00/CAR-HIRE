@@ -9,6 +9,7 @@ import car.hire.dao.custom.RentDao;
 import car.hire.dto.RentDto;
 import car.hire.entity.RentEntity;
 import car.hire.service.custom.RentService;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,8 +21,7 @@ public class RentServiceImpl implements RentService {
 
     public String rent(RentDto dto) throws Exception {
 
-        //  Connection connection = DBConnection.getInstance().getConnection();
-        //   connection.setAutoCommit(false);
+       
         RentEntity re = new RentEntity(dto.getRentalId(), dto.getCustId(),
                 dto.getCarId(), dto.getStartDate(), dto.getEndDate());
 
@@ -32,4 +32,26 @@ public class RentServiceImpl implements RentService {
         }
 
     }
+
+    @Override
+    public ArrayList<RentDto> getAllRents() throws Exception {
+
+        ArrayList<RentDto> rentDtos = new ArrayList<>();
+
+        ArrayList<RentEntity> rentEntitys = rentDao.getAll();
+
+        for (RentEntity entity : rentEntitys) {
+
+            RentDto dto = new RentDto(entity.getRentalID(),
+                    entity.getCustID(),
+                    entity.getCarID(),
+                    entity.getStartDate(),
+                    entity.getEndDate());
+
+            rentDtos.add(dto);
+
+        }
+        return rentDtos;
+    }
+
 }

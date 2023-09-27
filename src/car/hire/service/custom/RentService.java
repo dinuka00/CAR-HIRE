@@ -6,6 +6,7 @@ package car.hire.service.custom;
 
 import car.hire.dto.RentDto;
 import car.hire.service.SuperService;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,4 +15,6 @@ import car.hire.service.SuperService;
 public interface RentService extends SuperService{
     
     String rent(RentDto dto) throws Exception;
+
+    public ArrayList<RentDto> getAllRents() throws  Exception;
 }

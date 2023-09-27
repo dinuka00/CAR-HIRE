@@ -7,6 +7,7 @@ package car.hire.controller;
 import car.hire.dto.RentDto;
 import car.hire.service.ServiceFactory;
 import car.hire.service.custom.RentService;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,10 @@ public class RentController {
 
     public String rent(RentDto rentDto) throws Exception {
         return rentService.rent(rentDto);
+    }
+
+    public ArrayList<RentDto> getAllRents() throws Exception{
+        return rentService.getAllRents();
     }
     
 }
