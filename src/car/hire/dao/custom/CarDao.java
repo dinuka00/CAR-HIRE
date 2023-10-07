@@ -14,6 +14,8 @@ import car.hire.entity.CarEntity;
  */
 public interface CarDao extends CrudDao<CarEntity, String> {
 
+    public boolean updateAvailability(CarEntity carEntity);
+
     
 
 }

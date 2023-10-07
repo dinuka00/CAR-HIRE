@@ -35,6 +35,7 @@ public class LayoutView extends javax.swing.JFrame {
         manageCustomerButton = new javax.swing.JButton();
         newRentButton = new javax.swing.JButton();
         newRentButton1 = new javax.swing.JButton();
+        returnButton = new javax.swing.JButton();
         bodyPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -104,6 +105,14 @@ public class LayoutView extends javax.swing.JFrame {
             }
         });
 
+        returnButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        returnButton.setText("Car Return");
+        returnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sideNavPanelLayout = new javax.swing.GroupLayout(sideNavPanel);
         sideNavPanel.setLayout(sideNavPanelLayout);
         sideNavPanelLayout.setHorizontalGroup(
@@ -115,7 +124,8 @@ public class LayoutView extends javax.swing.JFrame {
                     .addComponent(manageCarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                     .addComponent(manageCustomerButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                     .addComponent(newRentButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                    .addComponent(newRentButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                    .addComponent(newRentButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                    .addComponent(returnButton, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
                 .addContainerGap())
         );
         sideNavPanelLayout.setVerticalGroup(
@@ -131,7 +141,9 @@ public class LayoutView extends javax.swing.JFrame {
                 .addComponent(newRentButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(newRentButton1)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(returnButton)
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout bodyPanelLayout = new javax.swing.GroupLayout(bodyPanel);
@@ -200,6 +212,10 @@ public class LayoutView extends javax.swing.JFrame {
       loadRentListPanel();
     }//GEN-LAST:event_newRentButton1ActionPerformed
 
+    private void returnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnButtonActionPerformed
+        loadReturnPanel();
+    }//GEN-LAST:event_returnButtonActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -212,6 +228,7 @@ public class LayoutView extends javax.swing.JFrame {
     private javax.swing.JButton manageCustomerButton;
     private javax.swing.JButton newRentButton;
     private javax.swing.JButton newRentButton1;
+    private javax.swing.JButton returnButton;
     private javax.swing.JPanel sideNavPanel;
     // End of variables declaration//GEN-END:variables
 
@@ -268,4 +285,16 @@ public class LayoutView extends javax.swing.JFrame {
         bodyPanel.repaint();
         bodyPanel.revalidate();
     }
+
+    private void loadReturnPanel() {
+        bodyPanel.removeAll();
+        ReturnPanel  returnPanel = new ReturnPanel();
+
+        returnPanel.setSize(bodyPanel.getWidth(), bodyPanel.getHeight());
+        bodyPanel.add(returnPanel);
+        bodyPanel.repaint();
+        bodyPanel.revalidate();
+    }
+    
+    
 }

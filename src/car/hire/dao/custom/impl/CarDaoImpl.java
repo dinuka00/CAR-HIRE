@@ -9,7 +9,10 @@ import car.hire.dao.custom.CarDao;
 import car.hire.entity.CarEntity;
 import car.hire.entity.CustomerEntity;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -82,5 +85,14 @@ public class CarDaoImpl implements CarDao {
         return carEntitys;
     }
 
-    
+    @Override
+    public boolean updateAvailability(CarEntity t) {
+        try {
+            return CrudUtil.executeUpdate("UPDATE car SET IsAvailable=? WHERE CarID=? ", t.getAvailable(), t.getCarId());
+        } catch (SQLException | ClassNotFoundException ex) {
+            Logger.getLogger(CarDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
 }

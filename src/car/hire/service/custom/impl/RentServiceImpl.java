@@ -5,10 +5,14 @@
 package car.hire.service.custom.impl;
 
 import car.hire.dao.DaoFactory;
+import car.hire.dao.custom.CarDao;
 import car.hire.dao.custom.RentDao;
+import car.hire.db.DBConnection;
 import car.hire.dto.RentDto;
+import car.hire.entity.CarEntity;
 import car.hire.entity.RentEntity;
 import car.hire.service.custom.RentService;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -18,22 +22,35 @@ import java.util.ArrayList;
 public class RentServiceImpl implements RentService {
 
     private RentDao rentDao = (RentDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.RENT);
+    private CarDao carDao = (CarDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.CAR);
 
     public String rent(RentDto dto) throws Exception {
 
-       
-        RentEntity re = new RentEntity(dto.getRentalId(), dto.getCustId(),
-                dto.getCarId(), dto.getStartDate(), dto.getEndDate());
+        Connection connection = DBConnection.getInstance().getConnection();
+        connection.setAutoCommit(false);
 
-        if (rentDao.add(re)) {
-            return "Successfully Added";
-        } else {
-            return "Fail";
+        if (rentDao.add(new RentEntity(dto.getRentalId(), dto.getCustId(),
+                dto.getCarId(), dto.getStartDate(), dto.getEndDate()))) {
+
+            CarEntity carEntity = carDao.get(dto.getCarId());
+            if (carEntity != null) {
+                carEntity.setAvailable("No");
+                if (carDao.updateAvailability(carEntity)) {
+                    connection.commit();
+                    return "Success";
+                } else {
+                    connection.rollback();
+                    return "Car Update Error";
+                }
+            } else {
+                connection.rollback();
+                return "Rent Save Error";
+            }
+
         }
-
+        return null;
     }
 
-    @Override
     public ArrayList<RentDto> getAllRents() throws Exception {
 
         ArrayList<RentDto> rentDtos = new ArrayList<>();
